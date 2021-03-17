@@ -2,29 +2,20 @@ require("dotenv").config();
 
 const connectDB = require("./configs/db");
 connectDB();
-
 const express = require("express");
 const cors = require("cors");
+const authRoute = require("./routes/authRoute");
 
 const app = express();
 
 // allow request from frontend to backend
 app.use(cors());
 
-// body parse
+// Body parse
 app.use(express.json());
 
-app.get("/", (req,res,next) => {
-  res.status(200).json({
-    status: "success",
-    data: {
-      posts: [{
-        content: "Hello VAGABOND!!!",
-        date: "8:59PM"
-      }]
-    }
-  })
-})
+// Mount the route
+app.use("/api/v1/auth", authRoute);
 
 const port = process.env.APP_PORT;
 const host = process.env.APP_HOST;
