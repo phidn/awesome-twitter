@@ -13,7 +13,7 @@ exports.register = async (req, res, next) => {
     });
 
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 };
 
@@ -25,6 +25,9 @@ exports.login = async (req, res, next) => {
     
     if(!user) {
       // Error: Email is not correct
+      const err = new Error("Incorrect email address or password, please try again.");
+      err.statusCode = 400;
+      return next(err);
     }
 
     if(bcrypt.compareSync(req.body.password, user.password)) {
@@ -35,10 +38,12 @@ exports.login = async (req, res, next) => {
         data: { token, userName: user.name }
       });
     } else {
-      // Error: password is not correct
+      const err = new Error("Incorrect email address or password, please try again.");
+      err.statusCode = 400;
+      return next(err);
     }
 
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 };

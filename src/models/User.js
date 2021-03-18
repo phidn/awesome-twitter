@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "Email must be required."] 
   },
   password: { type: String, 
-    required: [true, "Email must be required."], 
+    required: [true, "Password must be required."], 
     minLength: [6, "Password must be at least 6 characters."]
   },
 }, {timestamps: true});
