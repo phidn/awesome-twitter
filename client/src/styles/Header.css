@@ -15,15 +15,29 @@ nav {
 
 ul.main-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 ul.main-nav li {
   list-style: none;
+  margin-left: 2rem;
 }
 
 ul.main-nav li span.user-name {
   color: var(--color-light-blue);
+}
+
+ul.main-nav li span.user-name>span {
+  text-transform: uppercase;
+}
+
+ul.main-nav li.sign-out {
+  cursor: pointer;
+}
+
+ul.main-nav li.sign-out:hover {
+  color: var(--color-light-blue);
+  transition: all 0.3s;
 }
 
 a {
